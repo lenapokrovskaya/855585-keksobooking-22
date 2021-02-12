@@ -1,15 +1,14 @@
 //Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
 
-function getRandomFloat(min, max) {
+
+function getRandomFloat(min, max, decimal) {
   if (max < min || min < 0) {
     throw new RangeError('диапазон может быть только положительный, включая ноль, значение «до» не может быть меньшее, чем значение «от»');
-  } else {
-    return Math.random() * (max - min) + min;
   }
+  return (Math.random() * (max - min) + min).toFixed(decimal);
 }
 
-getRandomFloat(1, 10);
-
+getRandomFloat(1, 10, 4);
 
 
 
@@ -18,9 +17,8 @@ getRandomFloat(1, 10);
 function getRandomInt(min, max) {
   if (max < min || min < 0) {
     throw new RangeError('диапазон может быть только положительный, включая ноль, значение «до» не может быть меньшее, чем значение «от»');
-  } else {
-    return Math.random() * (max - min) + min;
   }
+  return Math.random() * (max - min) + min;
 }
 
 getRandomInt(100, 20);
