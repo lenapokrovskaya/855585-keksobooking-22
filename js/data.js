@@ -12,10 +12,23 @@ const TITLES = [
 ];
 
 const TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow'];
+  {
+    type: 'bungalow',
+    title: 'Бунгало',
+  },
+  {
+    type: 'flat',
+    title: 'Квартира',
+  },
+  {
+    type: 'house',
+    title: 'Дом',
+  },
+  {
+    type: 'palace',
+    title: 'Дворец',
+  },
+];
 
 const HOURS = [
   '12:00',
@@ -43,10 +56,14 @@ const DESCRIPTIONS = [
   'описание помещения10'];
 
 const PHOTO = [
-  'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
-  'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
-  'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+  'https://o0.github.io/assets/images/tokyo/hotel1.jpg',
+  'https://o0.github.io/assets/images/tokyo/hotel2.jpg',
+  'https://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 const SIMILAR_OFFERS_COUNT = 10;
 
-export {TITLES, TYPES, HOURS, FEATURE, DESCRIPTIONS, PHOTO, SIMILAR_OFFERS_COUNT}
+const TITLESTYPE = TYPES.map((typeofhousing) => {
+  return typeofhousing.title;
+});
+
+export {TITLES, TYPES, TITLESTYPE, HOURS, FEATURE, DESCRIPTIONS, PHOTO, SIMILAR_OFFERS_COUNT}
