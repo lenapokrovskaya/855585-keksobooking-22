@@ -34,7 +34,7 @@ const getRandomArrayElement = (elements) => {
 const getRandomArray = (array) => {
   let newArray = [];
   array.forEach((element) => {
-    if (getRandomInt(0, 1)) {
+    if (getRandomInt(0, 2)) {
       return;
     }
     newArray.push(element);
