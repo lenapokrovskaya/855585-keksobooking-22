@@ -21,12 +21,12 @@ const createRandomOffer = () => {
       photos: getRandomArray(PHOTO),
     },
     location: {
-      x: 'х: ' + getRandomFloat(35.65000, 35.70000, 5),
-      y: 'y: ' + getRandomFloat(139.70000, 139.80000, 5),
+      x: getRandomFloat(35.65000, 35.70000, 5),
+      y: getRandomFloat(139.70000, 139.80000, 5),
     },
   }
 }
 
 const similarOffers = new Array(SIMILAR_OFFERS_COUNT).fill(null).map(() => createRandomOffer());
-
+//console.log(similarOffers)
 export {similarOffers};
