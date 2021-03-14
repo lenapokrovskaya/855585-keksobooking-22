@@ -1,5 +1,3 @@
-//import {mapAddress} from './map.js';
-
 //Деактивация формы
 const deactivateForm = () => {
   const form = document.querySelector('.ad-form');
@@ -74,5 +72,42 @@ const validationTime = () => {
 
 validationTime();
 
+//Валидация цены по типу жилья
+
+
+const housingParameters = {
+  palace: {
+    type: 'Дворец',
+    price: 10000,
+  },
+
+  house: {
+    type: 'Дом',
+    price: 5000,
+  },
+
+  flat: {
+    type: 'Квартира',
+    price: 1000,
+  },
+
+  bungalow: {
+    type: 'Бунгало',
+    price: 0,
+  },
+};
+
+const announcement = document.querySelector('.ad-form');
+const type = announcement.querySelector('#type');
+const price = announcement.querySelector('#price');
+
+const validationPrice = () => {
+  type.addEventListener('click', () => {
+    price.placeholder = housingParameters[type.value].price;
+    price.min = housingParameters[type.value].price;
+  });
+};
+
+validationPrice();
 
 export {deactivateForm, activateForm};

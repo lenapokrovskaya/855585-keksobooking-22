@@ -1,5 +1,5 @@
 import {activateForm} from './form.js';
-import {similarOffers} from './mock.js';
+//import {similarOffers} from './mock.js';
 //console.log(typeof similarOffers);
 import {createOfferCard} from './card.js';
 
@@ -65,6 +65,11 @@ const getInputAddress = () => {
   //console.log(inputAddress);
 }
 
+const onLoadMainPin = (evt) => {
+  const latLng = evt.target.getLatLng();
+  getInputAddress(latLng.lat, latLng.lng);
+};
+
 const fillAddressInputMove = () => {
   marker.on('move', getInputAddress);
 }
@@ -72,31 +77,51 @@ const fillAddressInputMove = () => {
 getInputAddress();
 fillAddressInputMove();
 
+getInputAddress(LAT, LNG);
+marker.on('moveend', onLoadMainPin);
+
+
+const setInitStartPin = () => {
+  map.setView({
+    lat: LAT,
+    lng: LNG,
+  }, 10);
+  marker.setLatLng({
+    lat: LAT,
+    lng: LNG,
+  });
+  getInputAddress(LAT, LNG);
+};
+
+
 //Добавление на карту обычных меток
 
-similarOffers.forEach((offer) => {
+const createMarks = function (offers) {
+
+  offers.forEach(offer => {
   // eslint-disable-next-line no-undef
-  const pinIcon = L.icon({
-    iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    const pinIcon = L.icon({
+      iconUrl: './img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
+
+    // eslint-disable-next-line no-undef
+    const marker2 = L.marker(
+      {
+        lat: offer.location.lat,
+        lng: offer.location.lng,
+      },
+      {
+        icon: pinIcon,
+      },
+    );
+
+    marker2
+      .addTo(map)
+      .bindPopup(createOfferCard(offer));
   });
 
-  // eslint-disable-next-line no-undef
-  const marker2 = L.marker(
-    {
-      lat: offer.location.x,
-      lng: offer.location.y,
-    },
-    {
-      icon: pinIcon,
-    },
-  );
+};
 
-  marker2
-    .addTo(map)
-    .bindPopup(createOfferCard(offer));
-});
-
-export {getInputAddress};
-
+export {getInputAddress, createMarks, setInitStartPin};
