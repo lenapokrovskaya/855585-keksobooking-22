@@ -9,7 +9,6 @@ const createOfferCard = (offer) => {
     .querySelector('.popup');
 
   const offerElement = similarOfferTemplate.cloneNode(true);
-  //const offer = similarOffers[0];
   offerElement.querySelector('.popup__title').textContent = offer.offer.title;
   offerElement.querySelector('.popup__text--address').textContent = offer.offer.address;
   offerElement.querySelector('.popup__text--price').textContent = offer.offer.price + ' ₽/ночь';
@@ -20,7 +19,6 @@ const createOfferCard = (offer) => {
   offerElement.querySelector('.popup__description').textContent = offer.offer.description;
   offerElement.querySelector('.popup__photo').src = offer.offer.photos;
   offerElement.querySelector('.popup__avatar').src = offer.author.avatar;
-
 
   const photoListElement = offerElement.querySelector('.popup__photos');
   const photoItem = photoListElement.querySelector('img');
