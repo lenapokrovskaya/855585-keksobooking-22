@@ -1,6 +1,6 @@
-//Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
+const ALERT_SHOW_TIME = 5000;
 
-function getRandomFloat(min, max, decimal) {
+const getRandomFloat = (min, max, decimal) => {
   if (max < min || min < 0) {
     throw new RangeError('диапазон может быть только положительный, включая ноль, значение «до» не может быть меньшее, чем значение «от»');
   }
@@ -9,25 +9,18 @@ function getRandomFloat(min, max, decimal) {
 
 getRandomFloat(1, 10, 4);
 
-
-//Функция, возвращающая случайное целое число из переданного диапазона включительно.
-
-function getRandomInt(min, max) {
+const getRandomInt = (min, max) => {
   if (max < min || min < 0) {
     throw new RangeError('диапазон может быть только положительный, включая ноль, значение «до» не может быть меньшее, чем значение «от»');
   }
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//Функция random из утилитарной библиотеки lodash.
-
-
 const getRandomArrayElement = (elements) => {
   // eslint-disable-next-line no-undef
   return elements[_.random(0, elements.length - 1)];
 };
 
-//Функция рандомного массива
 const getRandomArray = (array) => {
   let newArray = [];
   array.forEach((element) => {
@@ -38,12 +31,6 @@ const getRandomArray = (array) => {
   })
   return newArray;
 }
-
-
-
-//
-
-const ALERT_SHOW_TIME = 5000;
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
@@ -65,6 +52,5 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 }
-
 
 export {getRandomInt, getRandomFloat, getRandomArray, getRandomArrayElement, showAlert}
