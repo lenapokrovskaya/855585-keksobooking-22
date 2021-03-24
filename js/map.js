@@ -1,43 +1,35 @@
+/* global L:readonly */
+
 import {activateForm} from './form.js';
-//import {similarOffers} from './mock.js';
-//console.log(typeof similarOffers);
 import {createOfferCard} from './card.js';
-
-
 
 const LAT = 35.6894;
 const LNG = 139.6917;
 
-// eslint-disable-next-line no-undef
 const map = L.map('map')
   .on('load', () => {
-    //console.log('Карта инициализирована')
-    //активировать форму
     activateForm();
-    //console.log(activateForm());
   })
   .setView({
     lat: LAT,
     lng: LNG,
   }, 10);
 
-// eslint-disable-next-line no-undef
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   },
 ).addTo(map);
-////
 
-// eslint-disable-next-line no-undef
 const mainPinIcon = L.icon({
   iconUrl: 'img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-// eslint-disable-next-line no-undef
+let markerGroup = L.layerGroup().addTo(map);
+
 const marker = L.marker(
   {
     lat: LAT,
@@ -51,10 +43,6 @@ const marker = L.marker(
 
 marker.addTo(map);
 
-//marker.on('moveend', (evt) => {
-//console.log(evt.target.getLatLng());
-//);
-
 //Вывод координат в поле адреса
 
 const getInputAddress = () => {
@@ -62,7 +50,6 @@ const getInputAddress = () => {
   const inputAddress = document.querySelector('#address');
   const {lat, lng} = marker.getLatLng();
   inputAddress.value = `${lat.toFixed(5)} ${lng.toFixed(5)}`;
-  //console.log(inputAddress);
 }
 
 const onLoadMainPin = (evt) => {
@@ -80,7 +67,6 @@ fillAddressInputMove();
 getInputAddress(LAT, LNG);
 marker.on('moveend', onLoadMainPin);
 
-
 const setInitStartPin = () => {
   map.setView({
     lat: LAT,
@@ -93,20 +79,15 @@ const setInitStartPin = () => {
   getInputAddress(LAT, LNG);
 };
 
-
-//Добавление на карту обычных меток
-
-const createMarks = function (offers) {
+const createMarkers = function (offers) {
 
   offers.forEach(offer => {
-  // eslint-disable-next-line no-undef
     const pinIcon = L.icon({
       iconUrl: './img/pin.svg',
       iconSize: [40, 40],
       iconAnchor: [20, 40],
     });
 
-    // eslint-disable-next-line no-undef
     const marker2 = L.marker(
       {
         lat: offer.location.lat,
@@ -118,10 +99,15 @@ const createMarks = function (offers) {
     );
 
     marker2
-      .addTo(map)
+      .addTo(markerGroup)
       .bindPopup(createOfferCard(offer));
   });
 
 };
 
-export {getInputAddress, createMarks, setInitStartPin};
+const removeMarkers = () => {
+  map.removeLayer(markerGroup);
+  markerGroup = L.layerGroup().addTo(map);
+};
+
+export {getInputAddress, createMarkers, setInitStartPin, removeMarkers};

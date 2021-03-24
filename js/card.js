@@ -1,8 +1,3 @@
-//import {similarOffers} from './mock.js';
-
-//const similarListElement = document.querySelector('#map-canvas');
-
-
 const createOfferCard = (offer) => {
   const similarOfferTemplate = document.querySelector('#card')
     .content
@@ -47,9 +42,7 @@ const createOfferCard = (offer) => {
   featureListElement.innerHTML = '';
   featureListElement.appendChild(fragmentFeature);
 
-  //similarListElement.appendChild(offerElement);
   return offerElement;
 };
-//createOfferCard();
 
 export {createOfferCard};

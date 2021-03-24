@@ -18,8 +18,6 @@ const showNotification = () => {
   };
 
   document.addEventListener('keydown', onSuccessSend);
-
 };
-
 
 export {showNotification};

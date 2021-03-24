@@ -1,8 +1,11 @@
 import {showNotification} from './notification.js';
-import {setInitStartPin} from './map.js';
+import {setInitStartPin, removeMarkers, createMarkers} from './map.js';
 import {createSubmit} from './create-fetch.js';
+import {getOffers, getSimilarOfferCount} from './filter.js';
 
 const mainForm = document.querySelector('.ad-form');
+const formFilter = document.querySelector('.map__filters');
+const resetButton = document.querySelector('.ad-form__reset');
 
 mainForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -13,8 +16,17 @@ mainForm.addEventListener('submit', (evt) => {
     () => {
       mainForm.reset();
       showNotification();
+      formFilter.reset();
       setInitStartPin();
     },
   );
+});
 
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  formFilter.reset();
+  mainForm.reset();
+  removeMarkers();
+  createMarkers(getOffers().slice(0, getSimilarOfferCount()));
+  setInitStartPin();
 });
