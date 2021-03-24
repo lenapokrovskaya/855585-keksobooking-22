@@ -38,8 +38,6 @@ const deactivateForm = () => {
   }
 };
 
-deactivateForm();
-
 const activateForm = () => {
   const formActive = document.querySelector('.ad-form');
   formActive.classList.remove('ad-form--disabled');
@@ -63,16 +61,11 @@ const activateForm = () => {
   }
 };
 
-//Задание 5.2
-//Oпция для времени заезда и выезда
 const validateTime = () => {
   timeIn.addEventListener('click', () => timeOut.value = timeIn.value);
   timeOut.addEventListener('click', () => timeIn.value = timeOut.value);
 }
 
-validateTime();
-
-//Валидация цены по типу жилья
 const housingParameters = {
   bungalow: 0,
   flat: 1000,
@@ -87,21 +80,15 @@ const validatePrice = () => {
   });
 };
 
-validatePrice();
-
-//Валидация цены по количеству комнат и гостей
-
 const getRoomCapacity = () => {
   for (let option of capacity.options) {
-    option.disabled = ROOMS_CAPACITY[room.value].includes(option.value) ? false : true;
+    option.disabled = !ROOMS_CAPACITY[room.value].includes(option.value);
   }
   capacity.value = ROOMS_CAPACITY[room.value].includes(capacity.value) ? capacity.value : ROOMS_CAPACITY[room.value][0];
 };
-
-getRoomCapacity();
 
 room.addEventListener('change', () => {
   getRoomCapacity();
 });
 
-export {deactivateForm, activateForm, validatePrice, getRoomCapacity};
+export {deactivateForm, activateForm, validateTime, validatePrice, getRoomCapacity};

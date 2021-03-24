@@ -1,10 +1,11 @@
+/* global L:readonly */
+
 import {activateForm} from './form.js';
 import {createOfferCard} from './card.js';
 
 const LAT = 35.6894;
 const LNG = 139.6917;
 
-// eslint-disable-next-line no-undef
 const map = L.map('map')
   .on('load', () => {
     activateForm();
@@ -14,7 +15,6 @@ const map = L.map('map')
     lng: LNG,
   }, 10);
 
-// eslint-disable-next-line no-undef
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
@@ -22,16 +22,14 @@ L.tileLayer(
   },
 ).addTo(map);
 
-// eslint-disable-next-line no-undef
 const mainPinIcon = L.icon({
   iconUrl: 'img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
-// eslint-disable-next-line no-undef
+
 let markerGroup = L.layerGroup().addTo(map);
 
-// eslint-disable-next-line no-undef
 const marker = L.marker(
   {
     lat: LAT,
@@ -84,14 +82,12 @@ const setInitStartPin = () => {
 const createMarkers = function (offers) {
 
   offers.forEach(offer => {
-  // eslint-disable-next-line no-undef
     const pinIcon = L.icon({
       iconUrl: './img/pin.svg',
       iconSize: [40, 40],
       iconAnchor: [20, 40],
     });
 
-    // eslint-disable-next-line no-undef
     const marker2 = L.marker(
       {
         lat: offer.location.lat,
@@ -111,7 +107,6 @@ const createMarkers = function (offers) {
 
 const removeMarkers = () => {
   map.removeLayer(markerGroup);
-  // eslint-disable-next-line no-undef
   markerGroup = L.layerGroup().addTo(map);
 };
 

@@ -67,11 +67,10 @@ const offerFilter = (offers) => {
 };
 
 let offers = [];
-
+/*global _:readonly*/
 const fetchData = createFetch((data) => {
   offers = data;
   createMarkers(offers.slice(0, SIMILAR_OFFER_COUNT));
-  // eslint-disable-next-line no-undef
   filterForm.addEventListener('change', _.debounce(() => {
     const filterData = offerFilter(offers);
     removeMarkers();
@@ -81,4 +80,12 @@ const fetchData = createFetch((data) => {
 
 fetchData();
 
-export{offers, SIMILAR_OFFER_COUNT};
+const getOffers = () => {
+  return offers;
+};
+
+const getSimilarOfferCount = () => {
+  return SIMILAR_OFFER_COUNT;
+};
+
+export{getOffers, getSimilarOfferCount};

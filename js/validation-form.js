@@ -1,7 +1,7 @@
 import {showNotification} from './notification.js';
 import {setInitStartPin, removeMarkers, createMarkers} from './map.js';
 import {createSubmit} from './create-fetch.js';
-import {offers, SIMILAR_OFFER_COUNT} from './filter.js';
+import {getOffers, getSimilarOfferCount} from './filter.js';
 
 const mainForm = document.querySelector('.ad-form');
 const formFilter = document.querySelector('.map__filters');
@@ -27,6 +27,6 @@ resetButton.addEventListener('click', (evt) => {
   formFilter.reset();
   mainForm.reset();
   removeMarkers();
-  createMarkers(offers.slice(0, SIMILAR_OFFER_COUNT));
+  createMarkers(getOffers().slice(0, getSimilarOfferCount()));
   setInitStartPin();
 });

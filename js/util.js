@@ -15,9 +15,8 @@ const getRandomInt = (min, max) => {
   }
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
+/*global _:readonly*/
 const getRandomArrayElement = (elements) => {
-  // eslint-disable-next-line no-undef
   return elements[_.random(0, elements.length - 1)];
 };
 
