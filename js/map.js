@@ -5,22 +5,25 @@ import {createOfferCard} from './card.js';
 
 const LAT = 35.6894;
 const LNG = 139.6917;
+const map = L.map('map');
 
-const map = L.map('map')
-  .on('load', () => {
+const initMap = () => {
+  map.on('load', () => {
     activateForm();
   })
-  .setView({
+  map.setView({
     lat: LAT,
     lng: LNG,
   }, 10);
 
-L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  },
-).addTo(map);
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    },
+  ).addTo(map);
+
+};
 
 const mainPinIcon = L.icon({
   iconUrl: 'img/main-pin.svg',
@@ -110,4 +113,4 @@ const removeMarkers = () => {
   markerGroup = L.layerGroup().addTo(map);
 };
 
-export {getInputAddress, createMarkers, setInitStartPin, removeMarkers};
+export {getInputAddress, createMarkers, setInitStartPin, removeMarkers, initMap};

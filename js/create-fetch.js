@@ -1,4 +1,5 @@
 import {showAlert} from './util.js';
+import {showError} from './notification.js';
 const createFetch = (onSuccess) => () => {
   return fetch('https://22.javascript.pages.academy/keksobooking/data', {
     method: 'GET',
@@ -26,11 +27,11 @@ const createSubmit = (formData, onSuccess) => {
     if (response.ok) {
       onSuccess();
     } else {
-      showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+      showError();
     }
   })
     .catch(() => {
-      showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+      showError();
     });
 };
 export {createFetch, createSubmit};

@@ -1,23 +1,30 @@
-const showNotification = () => {
-  const templateCard = document.querySelector('#success').content;
-  const newCard = templateCard.querySelector('.success');
+const showPopupNotification = (id, className) => {
+  const templateCard = document.querySelector(id).content;
+  const newCard = templateCard.querySelector(className);
   const cardElement = newCard.cloneNode(true);
-
   const container = document.querySelector('main');
+
   container.appendChild(cardElement);
 
-  cardElement.addEventListener('click', () => {
-    cardElement.remove();
-  });
-
-  const onSuccessSend = (evt) => {
+  const onSend = (evt) => {
     if (evt.code === 'Escape') {
       cardElement.remove();
-      document.removeEventListener('keydown', onSuccessSend);
+      document.removeEventListener('keydown', onSend);
     }
   };
 
-  document.addEventListener('keydown', onSuccessSend);
+  document.addEventListener('keydown', onSend);
+  cardElement.addEventListener('click', () => {
+    cardElement.remove();
+  });
 };
 
-export {showNotification};
+const showNotification = () => {
+  showPopupNotification('#success', '.success');
+};
+
+const showError = () => {
+  showPopupNotification('#error', '.error');
+};
+
+export { showNotification, showError };

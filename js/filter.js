@@ -1,26 +1,29 @@
 import {createFetch} from './create-fetch.js';
 import {createMarkers, removeMarkers} from './map.js';
 
+const SIMILAR_OFFER_COUNT = 10;
+const DELAY = 500;
+const LOWERPRICE = 10000;
+const HIGHPRICE = 50000;
 const filterForm = document.querySelector('.map__filters');
 const houseType = filterForm.querySelector('#housing-type');
 const priceType = filterForm.querySelector('#housing-price');
 const roomType = filterForm.querySelector('#housing-rooms');
 const guestType = filterForm.querySelector('#housing-guests');
-const SIMILAR_OFFER_COUNT = 10;
-const DELAY = 500;
+
 
 const priceFilter = (offer, price) => {
   if (price === 'any') {
     return true;
   }
 
-  if (offer.offer.price <= 10000 && price === 'low') {
+  if (offer.offer.price <= LOWERPRICE && price === 'low') {
     return true;
   }
-  if (offer.offer.price > 10000 && offer.offer.price <= 50000 && price === 'middle') {
+  if (offer.offer.price > LOWERPRICE && offer.offer.price <= HIGHPRICE && price === 'middle') {
     return true;
   }
-  if (offer.offer.price > 50000 && price === 'high') {
+  if (offer.offer.price > HIGHPRICE && price === 'high') {
     return true;
   }
   return false;

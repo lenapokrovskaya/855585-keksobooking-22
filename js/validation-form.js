@@ -1,7 +1,8 @@
-import {showNotification} from './notification.js';
+import {showNotification, showError } from './notification.js';
 import {setInitStartPin, removeMarkers, createMarkers} from './map.js';
 import {createSubmit} from './create-fetch.js';
 import {getOffers, getSimilarOfferCount} from './filter.js';
+import {getRoomCapacity} from './form.js';
 
 const mainForm = document.querySelector('.ad-form');
 const formFilter = document.querySelector('.map__filters');
@@ -17,7 +18,13 @@ mainForm.addEventListener('submit', (evt) => {
       mainForm.reset();
       showNotification();
       formFilter.reset();
+      getRoomCapacity()
+      removeMarkers();
+      createMarkers(getOffers().slice(0, getSimilarOfferCount()));
       setInitStartPin();
+    },
+    () => {
+      showError();
     },
   );
 });
