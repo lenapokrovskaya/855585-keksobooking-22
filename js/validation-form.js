@@ -18,7 +18,7 @@ mainForm.addEventListener('submit', (evt) => {
       mainForm.reset();
       showNotification();
       formFilter.reset();
-      getRoomCapacity()
+      getRoomCapacity();
       removeMarkers();
       createMarkers(getOffers().slice(0, getSimilarOfferCount()));
       setInitStartPin();
@@ -33,6 +33,7 @@ resetButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   formFilter.reset();
   mainForm.reset();
+  getRoomCapacity();
   removeMarkers();
   createMarkers(getOffers().slice(0, getSimilarOfferCount()));
   setInitStartPin();

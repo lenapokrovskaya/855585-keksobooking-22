@@ -27,4 +27,4 @@ const showError = () => {
   showPopupNotification('#error', '.error');
 };
 
-export { showNotification, showError };
+export {showNotification, showError};

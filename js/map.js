@@ -2,14 +2,20 @@
 
 import {activateForm} from './form.js';
 import {createOfferCard} from './card.js';
+import {createFetch} from './create-fetch.js';
 
 const LAT = 35.6894;
 const LNG = 139.6917;
 const map = L.map('map');
+const SIMILAR_OFFER_COUNT = 10;
 
 const initMap = () => {
   map.on('load', () => {
     activateForm();
+    createFetch(
+      (data) => {
+        createMarkers(data.slice(0, SIMILAR_OFFER_COUNT));
+      })
   })
   map.setView({
     lat: LAT,
@@ -45,8 +51,6 @@ const marker = L.marker(
 );
 
 marker.addTo(map);
-
-//Вывод координат в поле адреса
 
 const getInputAddress = () => {
 

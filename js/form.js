@@ -81,7 +81,7 @@ const housingParameters = {
   },
 };
 
-const validatePrice= () => {
+const validatePrice = () => {
   type.addEventListener('change', () => {
     price.placeholder = housingParameters[type.value].price;
     price.min = housingParameters[type.value].price;
