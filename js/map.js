@@ -4,10 +4,12 @@ import {activateForm} from './form.js';
 import {createOfferCard} from './card.js';
 import {createFetch} from './create-fetch.js';
 
+
+const SIMILAR_OFFER_COUNT = 10;
 const LAT = 35.6894;
 const LNG = 139.6917;
 const map = L.map('map');
-const SIMILAR_OFFER_COUNT = 10;
+
 
 const initMap = () => {
   map.on('load', () => {
@@ -117,4 +119,4 @@ const removeMarkers = () => {
   markerGroup = L.layerGroup().addTo(map);
 };
 
-export {getInputAddress, createMarkers, setInitStartPin, removeMarkers, initMap};
+export {getInputAddress, createMarkers, setInitStartPin, removeMarkers, initMap, SIMILAR_OFFER_COUNT};

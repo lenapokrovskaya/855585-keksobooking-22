@@ -1,7 +1,6 @@
 import {createFetch} from './create-fetch.js';
-import {createMarkers, removeMarkers} from './map.js';
+import {createMarkers, removeMarkers, SIMILAR_OFFER_COUNT} from './map.js';
 
-const SIMILAR_OFFER_COUNT = 10;
 const DELAY = 500;
 const LOWERPRICE = 10000;
 const HIGHPRICE = 50000;
